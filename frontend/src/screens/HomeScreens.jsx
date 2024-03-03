@@ -1,7 +1,7 @@
-import Hero from "../components/Hero";
+import Header from "../components/Header";
 
 const HomeScreens = () => {
-  return <Hero />;
+  return <Header />;
 };
 
 export default HomeScreens;

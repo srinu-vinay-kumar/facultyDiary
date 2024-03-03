@@ -1,0 +1,14 @@
+Structure of the ***Backend Folder***
+    1. config Folder:
+        "db file": contains the mongodb connection
+    2. controllers folder
+    3. middleware folder
+    4. models folder:
+        "userModel file": contains the schemas for the data
+    5. routes folder
+    6. utils folder
+
+------------------------------------------------------------------
+
+Structure of the ***Frontend Folder***
+    

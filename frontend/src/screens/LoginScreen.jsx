@@ -1,15 +1,39 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Form, Row, Button, Col } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import FormContainer from "../components/FormContainer";
+import { useLoginMutation } from "../slices/usersApiSlice";
+import { setCredentials } from "../slices/authSlices";
+import { toast } from "react-toastify";
+import Loader from "../components/Loader";
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState("");
+  const [empId, setEmpId] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [login, { isLoading }] = useLoginMutation();
+
+  const { userInfo } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate("/home");
+    }
+  }, [navigate, userInfo]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("submit");
+    try {
+      const res = await login({ empId, password }).unwrap();
+      dispatch(setCredentials({ ...res }));
+      navigate("/home");
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
+    }
   };
 
   return (
@@ -17,13 +41,13 @@ const LoginScreen = () => {
       <h1>Sign In</h1>
 
       <Form onSubmit={submitHandler}>
-        <Form.Group className="my-2" controlId="email">
-          <Form.Label>Email Address</Form.Label>
+        <Form.Group className="my-2" controlId="empId">
+          <Form.Label>Employee Id</Form.Label>
           <Form.Control
-            type="email"
-            placeholder="Enter your email address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="string"
+            placeholder="1235"
+            value={empId}
+            onChange={(e) => setEmpId(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
@@ -31,18 +55,22 @@ const LoginScreen = () => {
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Enter your password"
+            placeholder="*******"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
+
+        {isLoading && <Loader />}
 
         <Button type="submit" variant="primary" className="mt-3">
           Sign In
         </Button>
 
         <Row className="py-3">
-            <Col>New Faculty <Link to='/register'>Register?</Link> </Col>
+          <Col>
+            New Faculty <Link to="/register">Register?</Link>{" "}
+          </Col>
         </Row>
       </Form>
     </FormContainer>

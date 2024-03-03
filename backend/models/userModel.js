@@ -17,19 +17,28 @@ const userSchema = mongoose.Schema(
       required: true,
     },
 
-    employeeId: {
-      type: Number,
-      required: true,
-      unique: true,
-    },
-
-    collegeMail: {
+    empId: {
       type: String,
       required: true,
       unique: true,
     },
 
-    department: {
+    clgMail: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    clgName: {
+      type: String,
+      required: true,
+    },
+
+    designation: {
+      type: String,
+      required: true,
+    },
+
+    dept: {
       type: String,
       required: true,
     },
@@ -40,20 +49,6 @@ const userSchema = mongoose.Schema(
     },
 
     experience: {
-      type: Number,
-      required: true,
-    },
-
-    csiMembership: {
-      type: String,
-      required: true,
-    },
-
-    passportNumber: {
-      type: String,
-    },
-
-    panNumber: {
       type: String,
       required: true,
     },
@@ -74,12 +69,12 @@ userSchema.pre("save", async function (next) {
   }
 
   const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt)
+  this.password = await bcrypt.hash(this.password, salt);
 });
 
-userSchema.methods.matchPassword = async function(enteredPassword){
-    return await bcrypt.compare(enteredPassword, this.password);
-}
+userSchema.methods.matchPassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
 
 const User = mongoose.model("User", userSchema);
 

@@ -6,9 +6,9 @@ import generateToken from "../utils/generateToken.js";
 // route POST /api/users/auth
 // @access Public
 const authUser = asyncHandler(async (req, res) => {
-  const { employeeId, password } = req.body;
+  const { empId, password } = req.body;
 
-  const user = await User.findOne({ employeeId });
+  const user = await User.findOne({ empId });
 
   if (user && (await user.matchPassword(password))) {
     generateToken(res, user._id);
@@ -17,18 +17,17 @@ const authUser = asyncHandler(async (req, res) => {
       firstName: user.firstName,
       middleName: user.middleName,
       lastName: user.lastName,
-      employeeId: user.employeeId,
-      collegeMail: user.collegeMail,
-      department: user.department,
+      empId: user.empId,
+      clgMail: user.clgMail,
+      clgName: user.clgName,
+      designation: user.designation,
+      dept: user.dept,
       qualification: user.qualification,
       experience: user.experience,
-      csiMembership: user.csiMembership,
-      passportNumber: user.passportNumber,
-      panNumber: user.panNumber,
     });
   } else {
     res.status(401);
-    throw new Error("Invalid employeeID or password");
+    throw new Error("Invalid empId or password");
   }
 });
 
@@ -40,18 +39,17 @@ const registerUser = asyncHandler(async (req, res) => {
     firstName,
     middleName,
     lastName,
-    employeeId,
-    collegeMail,
-    department,
+    empId,
+    clgMail,
+    clgName,
+    designation,
+    dept,
     qualification,
     experience,
-    csiMembership,
-    passportNumber,
-    panNumber,
     password,
   } = req.body;
 
-  const userExists = await User.findOne({ employeeId });
+  const userExists = await User.findOne({ empId });
 
   if (userExists) {
     res.status(400);
@@ -62,14 +60,13 @@ const registerUser = asyncHandler(async (req, res) => {
   //   firstName,
   //   middleName,
   //   lastName,
-  //   employeeId,
-  //   collegeMail,
-  //   department,
+  //   empId,
+  //   clgMail,
+  //   dept,
   //   qualification,
   //   experience,
-  //   csiMembership,
-  //   passportNumber,
-  //   panNumber,
+  //   designation,
+  //   clgName,
   //   password,
   // });
 
@@ -77,14 +74,13 @@ const registerUser = asyncHandler(async (req, res) => {
     firstName,
     middleName,
     lastName,
-    employeeId,
-    collegeMail,
-    department,
+    empId,
+    clgMail,
+    clgName,
+    designation,
+    dept,
     qualification,
     experience,
-    csiMembership,
-    passportNumber,
-    panNumber,
     password,
   });
 
@@ -95,14 +91,13 @@ const registerUser = asyncHandler(async (req, res) => {
       firstName: user.firstName,
       middleName: user.middleName,
       lastName: user.lastName,
-      employeeId: user.employeeId,
-      collegeMail: user.collegeMail,
-      department: user.department,
+      empId: user.empId,
+      clgMail: user.clgMail,
+      clgName: user.clgName,
+      designation: user.designation,
+      dept: user.dept,
       qualification: user.qualification,
       experience: user.experience,
-      csiMembership: user.csiMembership,
-      passportNumber: user.passportNumber,
-      panNumber: user.panNumber,
     });
   } else {
     res.status(400);
@@ -128,17 +123,16 @@ const logoutUser = asyncHandler(async (req, res) => {
 const getUserProfile = asyncHandler(async (req, res) => {
   const user = {
     _id: req.user._id,
-    employeeId: req.user.employeeId,
+    empId: req.user.empId,
     firstName: req.user.firstName,
     middleName: req.user.middleName,
     lastName: req.user.lastName,
-    collegeMail: req.user.collegeMail,
-    department: req.user.department,
+    clgMail: req.user.clgMail,
+    clgName: req.user.clgName,
+    designation: req.user.designation,
+    dept: req.user.dept,
     qualification: req.user.qualification,
     experience: req.user.experience,
-    csiMembership: req.user.csiMembership,
-    passportNumber: req.user.passportNumber,
-    panNumber: req.user.panNumber,
   };
   res.status(200).json({ user });
 });
@@ -153,15 +147,13 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     user.firstName = req.body.firstName || user.firstName;
     user.middleName = req.body.middleName || user.middleName;
     user.lastName = req.body.lastName || user.lastName;
-    user.employeeId = req.body.employeeId || user.employeeId;
-    user.collegeMail = req.body.collegeMail || user.collegeMail;
-    user.department = req.body.department || user.department;
+    user.empId = req.body.empId || user.empId;
+    user.clgMail = req.body.clgMail || user.clgMail;
+    user.clgName = req.body.clgName || user.clgName;
+    user.designation = req.body.designation || user.designation;
+    user.dept = req.body.dept || user.dept;
     user.qualification = req.body.qualification || user.qualification;
     user.experience = req.body.experience || user.experience;
-    user.csiMembership = req.body.csiMembership || user.csiMembership;
-    user.passportNumber = req.body.passportNumber || user.passportNumber;
-    user.panNumber = req.body.panNumber || user.panNumber;
-
     if (req.body.password) {
       user.password = req.body.password;
     }
@@ -173,14 +165,13 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       firstName: updatedUser.firstName,
       middleName: updatedUser.middleName,
       lastName: updatedUser.lastName,
-      employeeId: updatedUser.employeeId,
-      collegeMail: updatedUser.collegeMail,
-      department: updatedUser.department,
+      empId: updatedUser.empId,
+      clgMail: updatedUser.clgMail,
+      clgName: updatedUser.clgName,
+      designation: updatedUser.designation,
+      dept: updatedUser.dept,
       qualification: updatedUser.qualification,
       experience: updatedUser.experience,
-      csiMembership: updatedUser.csiMembership,
-      passportNumber: updatedUser.passportNumber,
-      panNumber: updatedUser.panNumber,
     });
   } else {
     res.status(404);
