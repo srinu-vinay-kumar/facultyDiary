@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 import App from "./App.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./index.css";
 import HomeScreens from "./screens/HomeScreens.jsx";
 import LoginScreen from "./screens/LoginScreen.jsx";
 import RegisterScreen from "./screens/RegisterScreen.jsx";

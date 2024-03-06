@@ -56,7 +56,8 @@ const RegisterScreen = () => {
           password,
         }).unwrap();
         dispatch(setCredentials({ ...res }));
-        navigate("/");
+        navigate("/login");
+        toast.success("Registered successfully");
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }
