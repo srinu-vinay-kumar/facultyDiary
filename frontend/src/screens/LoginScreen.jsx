@@ -9,6 +9,7 @@ import { setCredentials } from "../slices/authSlices";
 import { toast } from "react-toastify";
 import Loader from "../components/Loader";
 import loginImage from "../assets/login-page.jpg";
+import Header from "../components/Header";
 
 const LoginScreen = () => {
   const [empId, setEmpId] = useState("");
@@ -40,6 +41,7 @@ const LoginScreen = () => {
 
   return (
     <>
+      <Header />
       <Row>
         <Col>
           <FormContainer>

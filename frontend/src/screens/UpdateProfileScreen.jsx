@@ -9,7 +9,7 @@ import FormContainer from "../components/FormContainer";
 import { useUpdateUserMutation } from "../slices/usersApiSlice";
 import Header from "../components/Header";
 
-const ProfileScreen = () => {
+const UpdateProfileScreen = () => {
   const [firstName, setFirstName] = useState("");
   const [middleName, setMiddleName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -233,4 +233,4 @@ const ProfileScreen = () => {
   );
 };
 
-export default ProfileScreen;
+export default UpdateProfileScreen;

@@ -34,6 +34,7 @@ const authUser = asyncHandler(async (req, res) => {
 // @desc Register a new user
 // route POST /api/users
 // @access Public
+
 const registerUser = asyncHandler(async (req, res) => {
   const {
     firstName,
@@ -55,20 +56,6 @@ const registerUser = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("User already exists");
   }
-
-  // console.log({
-  //   firstName,
-  //   middleName,
-  //   lastName,
-  //   empId,
-  //   clgMail,
-  //   dept,
-  //   qualification,
-  //   experience,
-  //   designation,
-  //   clgName,
-  //   password,
-  // });
 
   const user = await User.create({
     firstName,
