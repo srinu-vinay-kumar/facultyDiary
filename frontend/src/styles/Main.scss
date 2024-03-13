@@ -2,4 +2,8 @@
 
 @import "./abstracts/functions", "./abstracts/mixins", "./abstracts/variables";
 
-@import "./layouts/header";
+@import "./layouts/header", "./layouts/details";
+
+@import "./pages/loginpage";
+
+@import "./components/carousel";

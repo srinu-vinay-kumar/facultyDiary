@@ -1,0 +1,71 @@
+.contentbox {
+  justify-content: space-around;
+
+  .div1 {
+    border-radius: 0px 0px 100px 100px;
+    background-color: rgba(237, 237, 237);
+    height: max-content;
+    margin: 9% 0 0 0;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+
+    .edit-icon {
+      font-size: xx-large;
+      color: $primary3;
+      cursor: pointer;
+    }
+  }
+
+  .div2 {
+    background-color: rgba(237, 237, 237);
+    height: 500px;
+    margin: 9% 0 0 0;
+    display: grid;
+    justify-content: space-around;
+    justify-items: center;
+    border-radius: 6%;
+
+    .profile_title {
+      background-color: $primary;
+      color: $secondary;
+      height: 40px;
+      display: grid;
+      width: fit-content;
+      align-content: space-evenly;
+      justify-content: space-evenly;
+      align-items: center;
+      justify-items: center;
+      padding: 10px;
+      margin-top: 30px;
+
+      h4 {
+        margin: 0;
+      }
+    }
+
+    .profile_details {
+      display: grid;
+      align-content: space-between;
+      justify-items: stretch;
+      margin: 0 0 70px 0;
+      h6 {
+        font-weight: bolder;
+      }
+
+      span {
+        font-weight: initial;
+      }
+      hr {
+        color: $teritary;
+        opacity: 0.75;
+      }
+    }
+  }
+}
+.row {
+  margin: 0;
+  padding: 0;
+}

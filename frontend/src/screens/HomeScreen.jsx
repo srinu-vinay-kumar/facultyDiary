@@ -1,10 +1,13 @@
+import Carousel from "../components/Carousel";
 import Header from "../components/Header";
+import Details from "../components/Details";
 
 const HomeScreen = () => {
   return (
     <>
       <Header />
-      <h1>home screen</h1>
+      <Carousel />
+      <Details />
     </>
   );
 };

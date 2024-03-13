@@ -108,7 +108,7 @@ const RegisterScreen = () => {
         <Form.Group className="my-2" controlId="empId">
           <Form.Label>Employee ID</Form.Label>
           <Form.Control
-            type="text"
+            type="number"
             placeholder="Enter your Employee ID"
             value={empId}
             onChange={(e) => setEmpId(e.target.value)}
@@ -129,12 +129,23 @@ const RegisterScreen = () => {
         {/* 6. clgName */}
         <Form.Group className="my-2" controlId="clgName">
           <Form.Label>College Name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter your College Name"
+          <Form.Select
             value={clgName}
             onChange={(e) => setClgName(e.target.value)}
-          ></Form.Control>
+          >
+            <option value="" disabled>
+              Select College Name
+            </option>
+            <option value="Aditya Engineering College">
+              Aditya Engineering College
+            </option>
+            <option value="Adtiya College of Engineering & Technology">
+              Aditya College of Engineering & Technology
+            </option>
+            <option value="Aditya College of Engineering">
+              Aditya College of Engineering
+            </option>
+          </Form.Select>
         </Form.Group>
 
         {/* 7. designation */}
@@ -151,12 +162,26 @@ const RegisterScreen = () => {
         {/* 8. dept */}
         <Form.Group className="my-2" controlId="dept">
           <Form.Label>Department</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter your  Department"
-            value={dept}
-            onChange={(e) => setDept(e.target.value)}
-          ></Form.Control>
+          <Form.Select value={dept} onChange={(e) => setDept(e.target.value)}>
+            <option value="" disabled>
+              Select Department
+            </option>
+            <option value="CE">Civil Engineering</option>
+            <option value="EEE">Electrical & Electronics Engineering</option>
+            <option value="MECH">Mechanical Engineering</option>
+            <option value="ECE">Electronics & Communication Engineering</option>
+            <option value="CSE">Computer Science & Engineering</option>
+            <option value="CSD">
+              Computer Science & Engineering(Data Science)
+            </option>
+            <option value="IT">Information Technology</option>
+            <option value="MIN">Mining Engineering</option>
+            <option value="PT">Petroleum Engineering</option>
+            <option value="AG">Agricultural Engineering</option>
+            <option value="AIML">
+              Artificial Intelligence & Machine Learning
+            </option>
+          </Form.Select>
         </Form.Group>
 
         {/* 9. qualification */}
@@ -174,7 +199,7 @@ const RegisterScreen = () => {
         <Form.Group className="my-2" controlId="experience">
           <Form.Label>Experience</Form.Label>
           <Form.Control
-            type="text"
+            type="number"
             placeholder="Enter your Experience"
             value={experience}
             onChange={(e) => setExperience(e.target.value)}

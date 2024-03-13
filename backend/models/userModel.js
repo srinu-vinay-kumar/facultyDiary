@@ -18,7 +18,7 @@ const userSchema = mongoose.Schema(
     },
 
     empId: {
-      type: String,
+      type: Number,
       required: true,
       unique: true,
     },
@@ -49,7 +49,7 @@ const userSchema = mongoose.Schema(
     },
 
     experience: {
-      type: String,
+      type: Number,
       required: true,
     },
 
