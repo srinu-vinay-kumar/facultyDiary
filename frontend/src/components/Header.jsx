@@ -31,20 +31,33 @@ const Header = () => {
 
   return (
     <header>
+<<<<<<< HEAD
       <Navbar expand="lg" className="nav-bar navbar-dark py-4" fixed="top">
+=======
+  
+      <Navbar  expand="lg" className="nav-bar navbar-dark py-4" fixed="top"  collapseOnSelect>
+>>>>>>> 536055118085a1e3b37775d7348c21ace9ee32db
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand className="nav-title">Faculty Diary</Navbar.Brand>
           </LinkContainer>
+<<<<<<< HEAD
           <Navbar.Toggle
             aria-controls="basic-navbar-nav"
             className="navbar-toggler-white"
           />
+=======
+          <Navbar.Toggle aria-controls="basic-navbar-nav" className="navbar-toggler-white" />
+>>>>>>> 536055118085a1e3b37775d7348c21ace9ee32db
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              {userInfo ? (
+              {/* {userInfo ? ( */}
                 <>
+<<<<<<< HEAD
                   <NavDropdown title="Diary ">
+=======
+                  <NavDropdown title="Diary " >
+>>>>>>> 536055118085a1e3b37775d7348c21ace9ee32db
                     <NavDropdown.Item href="/diary" className="nav-text ">
                       Diary
                     </NavDropdown.Item>
@@ -57,6 +70,7 @@ const Header = () => {
                   <Nav.Link href="/files" className="nav-text files">
                     Files
                   </Nav.Link>
+<<<<<<< HEAD
 
                   <div className="d-flex p ">
                     <img
@@ -77,11 +91,33 @@ const Header = () => {
                         Logout
                       </NavDropdown.Item>
                     </NavDropdown>
+=======
+                 
+                 
+                 
+        
+                  <div className="d-flex p "><img   src={profilePic} alt="Login Page" style={{height:"27px",width:"27px"}}/>
+                  
+                  <NavDropdown title={fullName} id="username">
+                  
+
+                    <NavDropdown.Item href="./home" className="nav-text">
+                      Profile
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item
+                      onClick={logoutHandler}
+                      className="nav-text"
+                    >
+                      Logout
+                    </NavDropdown.Item>
+                  </NavDropdown>
+>>>>>>> 536055118085a1e3b37775d7348c21ace9ee32db
                   </div>
                 </>
-              ) : (
-                ``
-              )}
+              {/* ) : ( */}
+                
+              {/* )} */}
             </Nav>
           </Navbar.Collapse>
         </Container>

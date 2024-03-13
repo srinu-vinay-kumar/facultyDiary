@@ -1,5 +1,6 @@
 .navbar {
   background-color: $primary;
+  
 }
 
 .nav-text {
@@ -8,6 +9,7 @@
 .navbar-nav .dropdown-menu {
   background: rgba(27, 26, 85, 1);
 }
+<<<<<<< HEAD
 .nav-text {
   text-decoration: none;
   font-size: 20px;
@@ -15,10 +17,20 @@
 .nav-text:hover {
   background: rgba(27, 26, 85, 1);
   color: #ff6e0d;
+=======
+.nav-text{
+  text-decoration: none;
+  font-size:20px; 
+}
+.nav-text:hover {
+  background: rgba(27, 26, 85, 1);
+  color:#FF6E0D;
+>>>>>>> 536055118085a1e3b37775d7348c21ace9ee32db
   font-size: 20px;
   transition: 0.5s;
   text-decoration: none;
 }
+<<<<<<< HEAD
 .nav-title {
   font-size: x-large;
   padding: 0;
@@ -39,3 +51,25 @@
 .Ppic {
   padding-top: 5px;
 }
+=======
+.nav-title{
+  font-size: x-large;
+  padding: 0;
+}
+.nav-bar{
+  color:white;
+}
+.navbar-toggler-white {
+ color: #fff; /* Change to your desired color */
+}
+.navbar-nav{
+  margin-right: 100px;
+}
+.files,.diary{
+  margin-right: 30px;
+ 
+}
+.Ppic{
+  padding-top: 5px;
+}
+>>>>>>> 536055118085a1e3b37775d7348c21ace9ee32db

@@ -2,8 +2,13 @@
 
 @import "./abstracts/functions", "./abstracts/mixins", "./abstracts/variables";
 
+<<<<<<< HEAD
 @import "./layouts/header", "./layouts/details";
 
 @import "./pages/loginpage";
 
 @import "./components/carousel";
+=======
+@import "./layouts/header";
+@import './pages/loginpage'
+>>>>>>> 536055118085a1e3b37775d7348c21ace9ee32db
