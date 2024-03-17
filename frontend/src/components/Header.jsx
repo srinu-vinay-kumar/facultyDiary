@@ -1,5 +1,4 @@
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../slices/usersApiSlice";
@@ -31,33 +30,29 @@ const Header = () => {
 
   return (
     <header>
-<<<<<<< HEAD
-      <Navbar expand="lg" className="nav-bar navbar-dark py-4" fixed="top">
-=======
-  
-      <Navbar  expand="lg" className="nav-bar navbar-dark py-4" fixed="top"  collapseOnSelect>
->>>>>>> 536055118085a1e3b37775d7348c21ace9ee32db
+      {/* <Navbar
+        expand="lg"
+        className="nav-bar navbar-dark py-4"
+        fixed="top"
+        collapseOnSelect
+      >
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand className="nav-title">Faculty Diary</Navbar.Brand>
           </LinkContainer>
-<<<<<<< HEAD
           <Navbar.Toggle
             aria-controls="basic-navbar-nav"
             className="navbar-toggler-white"
           />
-=======
-          <Navbar.Toggle aria-controls="basic-navbar-nav" className="navbar-toggler-white" />
->>>>>>> 536055118085a1e3b37775d7348c21ace9ee32db
+          <Navbar.Toggle
+            aria-controls="basic-navbar-nav"
+            className="navbar-toggler-white"
+          />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              {/* {userInfo ? ( */}
+              {userInfo ? (
                 <>
-<<<<<<< HEAD
                   <NavDropdown title="Diary ">
-=======
-                  <NavDropdown title="Diary " >
->>>>>>> 536055118085a1e3b37775d7348c21ace9ee32db
                     <NavDropdown.Item href="/diary" className="nav-text ">
                       Diary
                     </NavDropdown.Item>
@@ -70,7 +65,6 @@ const Header = () => {
                   <Nav.Link href="/files" className="nav-text files">
                     Files
                   </Nav.Link>
-<<<<<<< HEAD
 
                   <div className="d-flex p ">
                     <img
@@ -80,7 +74,7 @@ const Header = () => {
                     />
 
                     <NavDropdown id="username">
-                      <NavDropdown.Item href="./home" className="nav-text">
+                      <NavDropdown.Item href="/home" className="nav-text">
                         Profile
                       </NavDropdown.Item>
                       <NavDropdown.Divider />
@@ -91,17 +85,61 @@ const Header = () => {
                         Logout
                       </NavDropdown.Item>
                     </NavDropdown>
-=======
-                 
-                 
-                 
-        
-                  <div className="d-flex p "><img   src={profilePic} alt="Login Page" style={{height:"27px",width:"27px"}}/>
-                  
-                  <NavDropdown title={fullName} id="username">
-                  
+                  </div>
+                </>
+              ) : (
+                ``
+              )}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar> */}
+      <Navbar
+        className="nav-bar  py-4"
+        expand="lg"
+        collapseOnSelect
+        // fixed="top"
+      >
+        <Container>
+          <Navbar.Brand href="/" className="nav-title">
+            Faculty Diary
+          </Navbar.Brand>
+          <Navbar.Toggle
+            aria-controls="basic-navbar-nav"
+            className="navbar-toggler-white"
+          />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ms-auto">
+              {userInfo ? (
+                <>
+                  <NavDropdown
+                    title={<span className="dropdown-title">Diary</span>}
+                    id="basic-nav-dropdown"
+                  >
+                    <NavDropdown.Item href="/diary" className="nav-text">
+                      Diary
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item href="/schedule" className="nav-text">
+                      Scheduler
+                    </NavDropdown.Item>
+                  </NavDropdown>
 
-                    <NavDropdown.Item href="./home" className="nav-text">
+                  <Nav.Link href="/files" className="nav-text">
+                    Files
+                  </Nav.Link>
+
+                  <NavDropdown
+                    title={
+                      <img
+                        src={profilePic}
+                        className="dropdown-title2"
+                        alt="profile pic"
+                      />
+                    }
+                    id="basic-nav-dropdown"
+                  >
+                    <NavDropdown.Item href="/home" className="nav-text">
                       Profile
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
@@ -112,12 +150,10 @@ const Header = () => {
                       Logout
                     </NavDropdown.Item>
                   </NavDropdown>
->>>>>>> 536055118085a1e3b37775d7348c21ace9ee32db
-                  </div>
                 </>
-              {/* ) : ( */}
-                
-              {/* )} */}
+              ) : (
+                ``
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

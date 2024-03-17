@@ -1,0 +1,25 @@
+.date-day {
+  font-weight: 600;
+  display: grid;
+  justify-content: end;
+  padding: 15px 35px 0 0;
+}
+
+.category-section {
+  height: 800px;
+  background-color: $color2;
+  width: 400px;
+  margin: 20px 0 0 33px;
+  border: 2px solid black;
+
+  .category-heading {
+    background-color: $color4;
+    height: fit-content;
+    padding: 20px;
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    font-weight: 900;
+    border-bottom: 2px solid;
+  }
+}

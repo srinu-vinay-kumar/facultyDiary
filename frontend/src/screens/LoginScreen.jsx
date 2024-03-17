@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import FormContainer from "../components/FormContainer";
 import { useLoginMutation } from "../slices/usersApiSlice";
 import { setCredentials } from "../slices/authSlices";
+import { LinkContainer } from "react-router-bootstrap";
 import { toast } from "react-toastify";
 import Loader from "../components/Loader";
 import loginImage from "../assets/login-page.jpg";
@@ -34,6 +35,7 @@ const LoginScreen = () => {
       const res = await login({ empId, password }).unwrap();
       dispatch(setCredentials({ ...res }));
       navigate("/home");
+      toast.success("Logged in successfully");
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
@@ -45,18 +47,19 @@ const LoginScreen = () => {
       <Row className="px-5 pt-4 bodydiv">
         <Col className="col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
           <Form className="p-4 border border-dark rounded mx-5 ">
-            <h1 style={{ color: "#1B1A55", fontWeight: "750" }}>Login</h1>
+            <h1 className="login-title">Login</h1>
             <Row className="py-3">
-              <Col style={{ fontWeight: "700" }}>
-                Doesn't have an account yet? <Link to="/register">Signup</Link>{" "}
+              <Col className="dont-have-acc">
+                Doesn't have an account yet?
+                <Link to="/register">
+                  <span className="signupp">Signup</span>
+                </Link>
               </Col>
             </Row>
 
             <Form onSubmit={submitHandler}>
               <Form.Group className="my-2" controlId="empId">
-                <Form.Label style={{ fontWeight: "500", color: "black" }}>
-                  Employee Id
-                </Form.Label>
+                <Form.Label className="form-label">Employee Id</Form.Label>
                 <Form.Control
                   type="number"
                   placeholder="1235"
@@ -67,9 +70,9 @@ const LoginScreen = () => {
 
               <Form.Group className="my-2" controlId="password">
                 <div className="pwd">
-                  <Form.Label style={{ fontWeight: "500", color: "black" }}>
-                    Password
-                  </Form.Label>
+                  <Form.Label className="form-label">Password</Form.Label>
+
+                  {/* forgot passowrd */}
                   <ForgotPassword />
                 </div>
 
@@ -87,7 +90,7 @@ const LoginScreen = () => {
                 type="submit"
                 style={{ color: "white", background: "#1B1A55", width: "100%" }}
                 onClick={submitHandler}
-                className="mt-3 "
+                className="mt-3 login-btn"
               >
                 Login
               </Button>

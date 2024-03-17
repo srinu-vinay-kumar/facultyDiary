@@ -1,31 +1,42 @@
-<<<<<<< HEAD
 .row {
   --bs-gutter-x: 0em;
   align-items: center;
   margin-top: 0px;
 }
 .bodydiv {
-  margin-top: 90px;
+  margin: 0;
 }
 .pwd {
   display: flex;
   justify-content: space-between;
 }
-=======
-.row{
-    --bs-gutter-x: 0em;
-    align-items: center;
-    margin-top: 0px;
-    
-}
-.bodydiv{
-    margin-top: 90px;
-}
-.pwd{
-    display: flex;
-    justify-content: space-between;
+
+.login-title {
+  color: $color1;
+  font-weight: "750";
 }
 
+.dont-have-acc {
+  font-weight: 700;
 
+  .signupp {
+    color: $color1;
+    font-weight: bold;
+    margin: 0 0 0 15px;
+    text-decoration: none;
+  }
+}
 
->>>>>>> 536055118085a1e3b37775d7348c21ace9ee32db
+.form-label {
+  font-weight: 500;
+}
+
+// .login-btn {
+//   color: $color2;
+//   background-color: $color1;
+//   width: 100%;
+
+//   &:hover {
+//     background-color: $color1;
+//   }
+// }

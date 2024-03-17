@@ -1,14 +1,14 @@
-@import "./base/resets";
-
+// abstracts import
 @import "./abstracts/functions", "./abstracts/mixins", "./abstracts/variables";
 
-<<<<<<< HEAD
-@import "./layouts/header", "./layouts/details";
+// base import
+@import "./base/resets";
 
-@import "./pages/loginpage";
+// components import
+@import "./components/carousel", "./components/forgotpassword";
 
-@import "./components/carousel";
-=======
-@import "./layouts/header";
-@import './pages/loginpage'
->>>>>>> 536055118085a1e3b37775d7348c21ace9ee32db
+// layouts import
+@import "./layouts/header", "./layouts/details", "./layouts/diarydropdown";
+
+// pages import
+@import "./pages/loginpage", "./pages/diarypage";

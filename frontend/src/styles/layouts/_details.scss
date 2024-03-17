@@ -4,7 +4,7 @@
   .div1 {
     border-radius: 0px 0px 100px 100px;
     background-color: rgba(237, 237, 237);
-    height: max-content;
+    height: 500px;
     margin: 9% 0 0 0;
     display: grid;
     align-content: center;
@@ -14,8 +14,12 @@
 
     .edit-icon {
       font-size: xx-large;
-      color: $primary3;
+      color: $color1_3;
       cursor: pointer;
+
+      &:hover {
+        color: $color1;
+      }
     }
   }
 
@@ -29,8 +33,8 @@
     border-radius: 6%;
 
     .profile_title {
-      background-color: $primary;
-      color: $secondary;
+      background-color: $color1;
+      color: $color2;
       height: 40px;
       display: grid;
       width: fit-content;
@@ -59,7 +63,7 @@
         font-weight: initial;
       }
       hr {
-        color: $teritary;
+        color: $color3;
         opacity: 0.75;
       }
     }

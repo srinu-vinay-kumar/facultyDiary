@@ -1,3 +1,4 @@
+// package imports
 import React from "react";
 import ReactDOM from "react-dom/client";
 import {
@@ -6,18 +7,23 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import App from "./App.jsx";
+import { Provider } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
+//main imports
+import App from "./App.jsx";
+import store from "./Store.js";
+// screens imports
 import HomeScreens from "./screens/HomeScreen.jsx";
 import LoginScreen from "./screens/LoginScreen.jsx";
 import RegisterScreen from "./screens/RegisterScreen.jsx";
-import store from "./Store.js";
-import { Provider } from "react-redux";
-import PrivateRoute from "./components/PrivateRoute.jsx";
 import DiaryScreen from "./screens/DiaryScreen.jsx";
 import SchedulerScreen from "./screens/SchedulerScreen.jsx";
 import FilesScreen from "./screens/FilesScreen.jsx";
 import UpdateProfileScreen from "./screens/UpdateProfileScreen.jsx";
+// component imports
+import PrivateRoute from "./components/PrivateRoute.jsx";
+import PasswordReset from "./components/PasswordReset.jsx";
+// scss import
 import "./styles/main.scss";
 
 const router = createBrowserRouter(
@@ -26,6 +32,7 @@ const router = createBrowserRouter(
       <Route index={true} path="/" element={<LoginScreen />} />
       <Route path="/login" element={<LoginScreen />} />
       <Route path="/register" element={<RegisterScreen />} />
+      <Route path="/password-reset" element={<PasswordReset />} />
 
       {/* Private Routes */}
       <Route path="" element={<PrivateRoute />}>
