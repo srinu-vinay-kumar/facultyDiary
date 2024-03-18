@@ -2,6 +2,15 @@ import React, { useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import Form from "react-bootstrap/Form";
 
+import { IoMdAddCircleOutline } from "react-icons/io";
+{
+  /* <TiDocumentDelete />; */
+}
+// import { HiOutlineDocumentDownload } from "react-icons/hi";
+{
+  /* <HiOutlineDocumentDownload />; */
+}
+
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
   <a
     className="diary-dropdown"
@@ -49,19 +58,23 @@ const CustomMenu = React.forwardRef(
 const DiaryDropdown = ({ title, items = [] }) => {
   // Default value added to items
   return (
-    <Dropdown className="dropdown-title">
-      <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
-        {title}
-      </Dropdown.Toggle>
-
-      <Dropdown.Menu as={CustomMenu}>
-        {items.map((item, index) => (
-          <Dropdown.Item key={index} eventKey={index}>
-            {item}
-          </Dropdown.Item>
-        ))}
-      </Dropdown.Menu>
-    </Dropdown>
+    <>
+      <Dropdown className="dropdown-heading">
+        <div>
+          <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
+            {title}
+          </Dropdown.Toggle>
+          <IoMdAddCircleOutline className="add-icon" />
+        </div>
+        <Dropdown.Menu as={CustomMenu}>
+          {items.map((item, index) => (
+            <Dropdown.Item key={index} eventKey={index}>
+              {item}
+            </Dropdown.Item>
+          ))}
+        </Dropdown.Menu>
+      </Dropdown>
+    </>
   );
 };
 

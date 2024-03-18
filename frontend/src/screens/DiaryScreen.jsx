@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-// import { TiDocumentAdd, TiDocumentDelete } from "react-icons/ti";<TiDocumentAdd />;<TiDocumentDelete />;
-// import { HiOutlineDocumentDownload } from "react-icons/hi"; <HiOutlineDocumentDownload />;
 import DiaryDropdown from "../components/DiaryDropdown";
 
 // component imports

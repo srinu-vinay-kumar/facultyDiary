@@ -27,6 +27,9 @@
   font-size: xx-large;
   font-weight: bolder;
   color: $color2;
+  text-shadow: 2px 2px 10px $color3, /* Right and down */ -2px 2px 10px $color3,
+    /* Left and down */ 2px -2px 10px $color3,
+    /* Right and up */ -2px -2px 10px $color3; /* Left and up */
 
   &:hover {
     color: $color2;
