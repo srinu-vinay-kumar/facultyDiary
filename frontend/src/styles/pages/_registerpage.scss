@@ -1,0 +1,14 @@
+.profilePicture {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  .profilepic {
+    height: 150px;
+    width: 150px;
+    cursor: pointer;
+  }
+}
+
+#profile {
+  display: none;
+}

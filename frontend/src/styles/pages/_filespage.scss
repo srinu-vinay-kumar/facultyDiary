@@ -23,16 +23,29 @@
     cursor: pointer;
   }
 
-  .input-field {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
-  }
+  // .input-field {
+  //   width: 0.1px;
+  //   height: 0.1px;
+  //   opacity: 0;
+  //   overflow: hidden;
+  //   position: absolute;
+  //   z-index: -1;
+  // }
   .upload-btn {
     padding: 6px 10px;
     border-radius: 5px;
+  }
+}
+
+.forrrm {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  margin-top: 5%;
+
+  .form-control {
+    border: 1px solid black;
   }
 }

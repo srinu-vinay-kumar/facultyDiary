@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../slices/usersApiSlice";
 import { logout } from "../slices/authSlices";
-import "../styles/main.scss";
 import profilePic from "../assets/profilePic.png";
 
 const Header = () => {

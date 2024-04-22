@@ -1,15 +1,20 @@
+// packages import
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import Loader from "../components/Loader";
+import { Form, Row, Button, Col } from "react-bootstrap";
+
+// components import
 import { useRegisterMutation } from "../slices/usersApiSlice";
 import { setCredentials } from "../slices/authSlices";
-import { Form, Row, Button, Col } from "react-bootstrap";
 import FormContainer from "../components/FormContainer";
-import "../styles/main.scss";
-
+import Loader from "../components/Loader";
+import convertToBase64 from "../helpers/convert";
+import profilePic from "../assets/profilePic.png";
 const RegisterScreen = () => {
+  const [file, setFile] = useState("");
+  // const [profilePicPreview, setProfilePicPreview] = useState("");
   const [firstName, setFirstName] = useState("");
   const [middleName, setMiddleName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -45,6 +50,7 @@ const RegisterScreen = () => {
     } else {
       try {
         const res = await register({
+          file,
           firstName,
           middleName,
           lastName,
@@ -66,11 +72,71 @@ const RegisterScreen = () => {
     }
   };
 
+  const onUpload = async (e) => {
+    const base64 = await convertToBase64(e.target.file[0]);
+    setProfile(base64);
+  };
+
+  // const handleProfilePictureChange = (e) => {
+  //   const file = e.target.file[0];
+  //   setProfilePicture(file);
+
+  //   // Display preview of selected image
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onloadend = () => {
+  //       setProfilePicPreview(reader.result);
+  //     };
+  //     reader.readAsDataURL(file);
+  //   } else {
+  //     setProfilePicPreview(profilePicImage);
+  //   }
+  // };
+
   return (
     <FormContainer>
       <h1>Sign Up</h1>
 
       <Form onSubmit={submitHandler}>
+        {/* profilePic input */}
+        <Form.Group>
+          <div className="profilePicture">
+            <img
+              src={file || profilePic}
+              alt="upload your profile picture"
+              className="profilepic"
+            />
+          </div>
+          <Form.Control
+            id="profile"
+            type="file"
+            accept="image/*"
+            onChange={onUpload}
+          />
+        </Form.Group>
+        {/* <Form.Group controlId="profilePicture">
+          <img
+            src={profilePicImage}
+            alt="Profile Pic"
+            className="profile-pic"
+            onClick={() => document.getElementById("profilePicInput").click()} 
+          />
+          <Form.Control
+            id="profilePicInput"
+            type="file"
+            onChange={handleProfilePictureChange}
+            accept="image/*"
+            style={{ display: "none" }}
+          />
+          {profilePicPreview && (
+            <img
+              src={profilePicPreview}
+              alt="Profile Preview"
+              className="profile-preview"
+            />
+          )}
+        </Form.Group>
+ */}
         {/* 1. firstName */}
         <Form.Group className="my-2" controlId="firstName">
           <Form.Label>First Name</Form.Label>

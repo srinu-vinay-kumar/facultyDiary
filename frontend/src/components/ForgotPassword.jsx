@@ -1,99 +1,56 @@
-import {
-  Modal,
-  Button,
-  ModalHeader,
-  ModalTitle,
-  ModalBody,
-  ModalFooter,
-  Form,
-} from "react-bootstrap";
-import { toast, ToastContainer } from "react-toastify";
-import { useNavigate, useParams, NavLink } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import axios from "../config/axiosConfig.js";
+import { Formik } from "formik";
+import { Form, Button } from "react-bootstrap";
 
 const ForgotPassword = () => {
-  const [show, setShow] = useState("");
-  const handleClose = () => setShow("");
-  const handleShow = () => setShow(true);
-
-  const [clgMail, setClgMail] = useState("");
-  const [message, setMessage] = useState("");
-
-  const setVal = async (e) => {
-    setClgMail(e.target.value);
-  };
-
-  const sendLink = async (e) => {
-    e.preventDefault();
-
-    const res = await fetch("/sendpasswordlink", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ clgMail }),
-    });
-
-    const data = await res.json();
-
-    if (data.status == 201) {
-      setClgMail("");
-      // toast.success(`Password reset link sent successfully to your mail`);
-      setMessage(true);
-    } else {
-      toast.error("Invalid user");
-    }
-  };
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+    },
+    validationSchema: Yup.object({
+      email: Yup.string().email("Invalid email address").required("Required"),
+    }),
+    onSubmit: (values) => {
+      axios
+        .post("/api/forgotPassword", values)
+        .then((response) => {
+          toast.success("Email sent successfully");
+        })
+        .catch((error) => {
+          if (error.response.status === 404) {
+            toast.error("Email not found");
+          } else {
+            toast.error("Server error");
+          }
+        });
+    },
+  });
 
   return (
+    // JSX for ForgotPassword component
     <>
-      <p onClick={handleShow} className="forgot">
-        Forgot Password?
-      </p>
-
-      <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-        animation={true}
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Forgot Password</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-          {message ? (
-            <p style={{ color: "green", fontWeight: "bold" }}>
-              Password reset link send successfully to your clg mail
-            </p>
-          ) : (
-            ``
-          )}
-
-          <Form>
-            <Form.Group className="mb-3" controlId="clgMail">
-              <Form.Label>Enter your Mail ID</Form.Label>
-              <Form.Control
-                type="email"
-                name="clgMail"
-                value={clgMail}
-                onChange={setVal}
-              />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cancel
+      <Formik formik={formik}>
+        <Form>
+          <Form.Group controlId="email">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.email}
+            />
+            {formik.touched.email && formik.errors.email ? (
+              <div className="error">{formik.errors.email}</div>
+            ) : null}
+          </Form.Group>
+          <Button variant="primary" type="submit" onClick={formik.handleSubmit}>
+            Submit
           </Button>
-          <Button variant="primary" onClick={sendLink}>
-            Send Mail
-          </Button>
-        </Modal.Footer>
-      </Modal>
+        </Form>
+      </Formik>
     </>
   );
 };

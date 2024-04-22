@@ -1,10 +1,11 @@
 import Header from "../components/Header";
+import Todo from "../components/Todo";
 
 const SchedulerScreen = () => {
   return (
     <>
       <Header />
-      <h1>Scheduler screen</h1>
+      <Todo />
     </>
   );
 };

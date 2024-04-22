@@ -6,9 +6,11 @@
 
 // components import
 @import "./components/carousel", "./components/forgotpassword";
+// @import "./components/diarysss";
 
 // layouts import
 @import "./layouts/header", "./layouts/details", "./layouts/diarydropdown";
 
 // pages import
-@import "./pages/loginpage", "./pages/diarypage", "./pages/filespage";
+@import "./pages/loginpage", "./pages/diarypage", "./pages/filespage",
+  "./pages/registerpage";

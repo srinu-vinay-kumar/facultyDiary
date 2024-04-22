@@ -9,6 +9,7 @@ import {
   updateUserProfile,
 } from "../controllers/userController.js";
 
+// user router
 router.post("/", registerUser);
 router.post("/auth", authUser);
 router.post("/logout", logoutUser);

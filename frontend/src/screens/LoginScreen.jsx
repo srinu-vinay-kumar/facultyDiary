@@ -73,7 +73,9 @@ const LoginScreen = () => {
                   <Form.Label className="form-label">Password</Form.Label>
 
                   {/* forgot passowrd */}
-                  <ForgotPassword />
+                  <Link to="/forgotpassword">
+                    <span>Forgot Password?</span>
+                  </Link>
                 </div>
 
                 <Form.Control
