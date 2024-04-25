@@ -72,27 +72,6 @@ const RegisterScreen = () => {
     }
   };
 
-  const onUpload = async (e) => {
-    const base64 = await convertToBase64(e.target.file[0]);
-    setProfile(base64);
-  };
-
-  // const handleProfilePictureChange = (e) => {
-  //   const file = e.target.file[0];
-  //   setProfilePicture(file);
-
-  //   // Display preview of selected image
-  //   if (file) {
-  //     const reader = new FileReader();
-  //     reader.onloadend = () => {
-  //       setProfilePicPreview(reader.result);
-  //     };
-  //     reader.readAsDataURL(file);
-  //   } else {
-  //     setProfilePicPreview(profilePicImage);
-  //   }
-  // };
-
   return (
     <FormContainer>
       <h1>Sign Up</h1>
@@ -128,13 +107,6 @@ const RegisterScreen = () => {
             accept="image/*"
             style={{ display: "none" }}
           />
-          {profilePicPreview && (
-            <img
-              src={profilePicPreview}
-              alt="Profile Preview"
-              className="profile-preview"
-            />
-          )}
         </Form.Group>
  */}
         {/* 1. firstName */}

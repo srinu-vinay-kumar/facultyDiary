@@ -24,19 +24,20 @@ import Hello from "./screens/Hello.jsx";
 
 // component imports
 import PrivateRoute from "./components/PrivateRoute.jsx";
-import PasswordReset from "./components/PasswordReset.jsx";
-import ForgotPassword from "./components/ForgotPassword.jsx";
+// import PasswordReset from "./components/PasswordReset.jsx";
+// import ForgotPassword from "./components/ForgotPassword.jsx";
 
 // scss import
 import "./styles/Main.scss";
+import FilesList from "./components/Files/FilesList.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<LoginScreen />} />
       <Route path="/login" element={<LoginScreen />} />
-      <Route path="/forgotpassword" element={<ForgotPassword />} />
-      <Route path="/password-reset" element={<PasswordReset />} />
+      {/* <Route path="/forgotpassword" element={<ForgotPassword />} />
+      <Route path="/password-reset" element={<PasswordReset />} /> */}
 
       {/* Private Routes */}
       <Route path="" element={<PrivateRoute />}>
@@ -44,6 +45,7 @@ const router = createBrowserRouter(
         <Route path="/diary" element={<DiaryScreen />} />
         <Route path="/schedule" element={<SchedulerScreen />} />
         <Route path="/files" element={<FilesScreen />} />
+        <Route path="/list" element={<FilesList />} />
         <Route path="/profile-update" element={<UpdateProfileScreen />} />
         <Route path="/hello" element={<Hello />} />
       </Route>

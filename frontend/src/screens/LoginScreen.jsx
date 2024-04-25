@@ -1,16 +1,23 @@
+// packages import
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Row, Button, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import FormContainer from "../components/FormContainer";
+import { toast } from "react-toastify";
+import { LinkContainer } from "react-router-bootstrap";
+
+// assests import
+import loginImage from "../assets/login-page.jpg";
+
+// slices import
 import { useLoginMutation } from "../slices/usersApiSlice";
 import { setCredentials } from "../slices/authSlices";
-import { LinkContainer } from "react-router-bootstrap";
-import { toast } from "react-toastify";
+
+// components import
+import FormContainer from "../components/FormContainer";
 import Loader from "../components/Loader";
-import loginImage from "../assets/login-page.jpg";
 import Header from "../components/Header";
-import ForgotPassword from "../components/ForgotPassword";
+// import ForgotPassword from "../components/ForgotPassword";
 
 const LoginScreen = () => {
   const [empId, setEmpId] = useState("");
