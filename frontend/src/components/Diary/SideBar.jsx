@@ -30,7 +30,7 @@ export default function Sidebar({
             <p>{note.body && note.body.substr(0, 100) + "..."}</p>
 
             <small className="note-meta">
-              Last modified{" "}
+              Last modified
               {new Date(note.lastModified).toLocaleDateString("en-IN", {
                 hour: "2-digit",
                 minute: "2-digit",

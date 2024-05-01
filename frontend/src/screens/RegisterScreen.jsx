@@ -78,7 +78,7 @@ const RegisterScreen = () => {
 
       <Form onSubmit={submitHandler}>
         {/* profilePic input */}
-        <Form.Group>
+        {/* <Form.Group>
           <div className="profilePicture">
             <img
               src={file || profilePic}
@@ -92,7 +92,7 @@ const RegisterScreen = () => {
             accept="image/*"
             onChange={onUpload}
           />
-        </Form.Group>
+        </Form.Group> */}
         {/* <Form.Group controlId="profilePicture">
           <img
             src={profilePicImage}

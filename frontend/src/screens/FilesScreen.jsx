@@ -10,10 +10,10 @@ const FilesScreen = () => {
 
       <h1>Store your Files here.</h1>
 
-      <Link to="/files" exact={true}>
+      {/* <Link to="/files" exact={true}>
         Home
       </Link>
-      <Link to="/list">Files List</Link>
+      <Link to="/list">Files List</Link> */}
 
       <Files />
       <FilesList />
