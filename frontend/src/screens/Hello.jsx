@@ -2,6 +2,7 @@ import uuid from "react-uuid";
 import { useState, useEffect } from "react";
 import Main from "../components/Diary/MainBar";
 import Sidebar from "../components/Diary/SideBar";
+import Header from "../components/Header";
 
 function Hello() {
   const [notes, setNotes] = useState(JSON.parse(localStorage.notes || []));
@@ -42,16 +43,19 @@ function Hello() {
   };
 
   return (
-    <div className="App">
-      <Sidebar
-        notes={notes}
-        onAddNote={onAddNote}
-        onDeleteNote={onDeleteNote}
-        activeNote={activeNote}
-        setActiveNote={setActiveNote}
-      />
-      <Main activeNote={getActiveNote()} onUpdateNote={onUpdateNote} />
-    </div>
+    <>
+      <Header />
+      <div className="App">
+        <Sidebar
+          notes={notes}
+          onAddNote={onAddNote}
+          onDeleteNote={onDeleteNote}
+          activeNote={activeNote}
+          setActiveNote={setActiveNote}
+        />
+        <Main activeNote={getActiveNote()} onUpdateNote={onUpdateNote} />
+      </div>
+    </>
   );
 }
 

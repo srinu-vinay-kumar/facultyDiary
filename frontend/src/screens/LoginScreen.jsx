@@ -80,7 +80,7 @@ const LoginScreen = () => {
                   <Form.Label className="form-label">Password</Form.Label>
 
                   {/* forgot passowrd */}
-                  <Link to="/forgotpassword">
+                  <Link to="/forgot-password">
                     <span>Forgot Password?</span>
                   </Link>
                 </div>

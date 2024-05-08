@@ -5,11 +5,12 @@
 @import "./base/resets";
 
 // components import
-@import "./components/carousel", "./components/forgotpassword";
-// @import "./components/diarysss";
+@import "./components/carousel", "./components/forgotpassword",
+  "./components/diarysss";
 
 // layouts import
 @import "./layouts/header", "./layouts/details", "./layouts/diarydropdown";
 
 // pages import
-@import "./pages/loginpage", "./pages/diarypage", "./pages/registerpage";
+@import "./pages/loginpage", "./pages/diarypage", "./pages/registerpage",
+  "./pages/filespage";

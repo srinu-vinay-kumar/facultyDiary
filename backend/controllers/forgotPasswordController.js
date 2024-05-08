@@ -1,90 +1,96 @@
-import jwt from "jsonwebtoken";
-import bycrypt from "bcryptjs";
-import nodemailer from "nodemailer";
+import express from "express";
+const router = express.Router();
+import User from "../models/userModel.js";
+import crypto from "crypto";
+import Joi from "joi";
+import passwordComplexity from "joi-password-complexity";
+import bcrypt from "bcryptjs";
+import sendEmail from "../utils/sendEmail.js";
+import Token from "../models/token.js";
+import asyncHandler from "express-async-handler";
 
-import db from "../models/userModel";
-
-const User = db.user;
-
-export const forgotPassword = async (req, res) => {
+const passwordReset = asyncHandler(async (req, res) => {
   try {
-    // Find the user by email
-    const user = await User.findOne({ mail: req.body.email });
+    const emailSchema = Joi.object({
+      email: Joi.string().email().required().label("Email"),
+    });
+    const { error } = emailSchema.validate(req.body);
+    if (error)
+      return res.status(400).send({ message: error.details[0].message });
 
-    // If user not found, send error message
-    if (!user) {
-      return res.status(404).send({ message: "User not found" });
+    let user = await User.findOne({ email: req.body.email });
+    if (!user)
+      return res
+        .status(409)
+        .send({ message: "User with given email does not exist!" });
+
+    let token = await Token.findOne({ userId: user._id });
+    if (!token) {
+      token = await new Token({
+        userId: user._id,
+        token: crypto.randomBytes(32).toString("hex"),
+      }).save();
     }
 
-    // Generate a unique JWT token for the user that contains the user's id
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
-      expiresIn: "10m",
-    });
+    const url = `${process.env.BASE_URL}password-reset/${user._id}/${token.token}/`;
+    await sendEmail(user.email, "Password Reset", url);
 
-    // Send the token to the user's email
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL,
-        pass: process.env.PASSWORD_APP_EMAIL,
-      },
-    });
-
-    // Email configuration
-    const mailOptions = {
-      from: process.env.EMAIL,
-      to: req.body.email,
-      subject: "Reset Password",
-      html: `<h1>Reset Your Password</h1>
-    <p>Click on the following link to reset your password:</p>
-    <a href="http://localhost:5173/reset-password/${token}">http://localhost:5173/reset-password/${token}</a>
-    <p>The link will expire in 10 minutes.</p>
-    <p>If you didn't request a password reset, please ignore this email.</p>`,
-    };
-
-    // Send the email
-    transporter.sendMail(mailOptions, (err, info) => {
-      if (err) {
-        return res.status(500).send({ message: err.message });
-      }
-      res.status(200).send({ message: "Email sent" });
-    });
-  } catch (err) {
-    res.status(500).send({ message: err.message });
+    res
+      .status(200)
+      .send({ message: "Password reset link sent to your email account" });
+  } catch (error) {
+    res.status(500).send({ message: "Internal Server Error" });
   }
-};
+});
 
-export const resetPassword = async (req, res) => {
+const resetPasswordLink = asyncHandler(async (req, res) => {
   try {
-    // Verify the token sent by the user
-    const decodedToken = jwt.verify(
-      req.params.token,
-      process.env.JWT_SECRET_KEY
-    );
+    const user = await User.findOne({ _id: req.params.id });
+    if (!user) return res.status(400).send({ message: "Invalid link" });
 
-    // If the token is invalid, return an error
-    if (!decodedToken) {
-      return res.status(401).send({ message: "Invalid token" });
-    }
+    const token = await Token.findOne({
+      userId: user._id,
+      token: req.params.token,
+    });
+    if (!token) return res.status(400).send({ message: "Invalid link" });
 
-    // find the user with the id from the token
-    const user = await User.findOne({ _id: decodedToken.userId });
-    if (!user) {
-      return res.status(401).send({ message: "no user found" });
-    }
+    res.status(200).send("Valid Url");
+  } catch (error) {
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+});
 
-    // Hash the new password
-    const salt = await bycrypt.genSalt(10);
-    req.body.newPassword = await bycrypt.hash(req.body.newPassword, salt);
+const setNewPassword = asyncHandler(async (req, res) => {
+  try {
+    const passwordSchema = Joi.object({
+      password: passwordComplexity().required().label("Password"),
+    });
+    const { error } = passwordSchema.validate(req.body);
+    if (error)
+      return res.status(400).send({ message: error.details[0].message });
 
-    // Update user's password, clear reset token and expiration time
-    user.password = req.body.newPassword;
+    const user = await User.findOne({ _id: req.params.id });
+    if (!user) return res.status(400).send({ message: "Invalid link" });
+
+    const token = await Token.findOne({
+      userId: user._id,
+      token: req.params.token,
+    });
+    if (!token) return res.status(400).send({ message: "Invalid link" });
+
+    if (!user.verified) user.verified = true;
+
+    const salt = await bcrypt.genSalt(Number(process.env.SALT));
+    const hashPassword = await bcrypt.hash(req.body.password, salt);
+
+    user.password = hashPassword;
     await user.save();
+    await token.remove();
 
-    // Send success response
-    res.status(200).send({ message: "Password updated" });
-  } catch (err) {
-    // Send error response if any error occurs
-    res.status(500).send({ message: err.message });
+    res.status(200).send({ message: "Password reset successfully" });
+  } catch (error) {
+    res.status(500).send({ message: "Internal Server Error" });
   }
-};
+});
+
+export { passwordReset, resetPasswordLink, setNewPassword };

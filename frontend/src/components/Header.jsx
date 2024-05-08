@@ -8,9 +8,10 @@ import profilePic from "../assets/profilePic.png";
 const Header = () => {
   const { userInfo } = useSelector((state) => state.auth);
 
-  const fullName = userInfo
-    ? `${userInfo.firstName} ${userInfo.middleName} ${userInfo.lastName}`
-    : ``;
+  // const fullName = userInfo
+  //   ? `${userInfo.firstName} ${userInfo.middleName} ${userInfo.lastName}`
+  //   : ``;
+  const firstName = userInfo ? `${userInfo.firstName}` : ``;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -66,11 +67,12 @@ const Header = () => {
 
                   <NavDropdown
                     title={
-                      <img
-                        src={profilePic}
-                        className="dropdown-title2"
-                        alt="profile pic"
-                      />
+                      // <img
+                      //   src={profilePic}
+                      //   className="dropdown-title2"
+                      //   alt="profile pic"
+                      // />
+                      <span className="dropdown-title">{firstName}...</span>
                     }
                     id="basic-nav-dropdown"
                   >

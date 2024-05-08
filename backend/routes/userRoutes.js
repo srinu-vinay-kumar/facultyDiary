@@ -1,4 +1,6 @@
 import express from "express";
+import nodemailer from "nodemailer";
+import bcrypt from "bcryptjs";
 const router = express.Router();
 import { protect } from "../middleware/authMiddleware.js";
 import {

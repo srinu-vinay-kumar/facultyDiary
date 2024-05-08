@@ -166,17 +166,10 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
-// send email link for reset password
-
-const sendpasswordlink = asyncHandler((req, res) => {
-  console.log(req.body);
-});
-
 export {
   authUser,
   registerUser,
   logoutUser,
   getUserProfile,
   updateUserProfile,
-  sendpasswordlink,
 };

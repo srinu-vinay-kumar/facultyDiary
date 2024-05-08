@@ -28,13 +28,13 @@ const Details = () => {
         <Container fluid>
           <Row className=" contentbox">
             <div className="div1 col-lg-4 col-md-9 col-sm-9 col-xs-9">
-              <BiSolidEditAlt onClick={profileUpdate} className="edit-icon" />
-              <h5>{userInfo.empId}</h5>
               <h3>{fullName}</h3>
+              <h5>{userInfo.empId}</h5>
               <h6>
                 {userInfo.designation}&nbsp;&nbsp;of&nbsp;&nbsp;
                 {userInfo.dept}
               </h6>
+              <BiSolidEditAlt onClick={profileUpdate} className="edit-icon" />
             </div>
             <div className="div2 col-lg-4 col-md-9 col-sm-9 col-xs-9">
               <div className="profile_title">

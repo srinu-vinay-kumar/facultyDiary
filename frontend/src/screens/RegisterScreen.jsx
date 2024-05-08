@@ -10,7 +10,6 @@ import { useRegisterMutation } from "../slices/usersApiSlice";
 import { setCredentials } from "../slices/authSlices";
 import FormContainer from "../components/FormContainer";
 import Loader from "../components/Loader";
-import convertToBase64 from "../helpers/convert";
 import profilePic from "../assets/profilePic.png";
 const RegisterScreen = () => {
   const [file, setFile] = useState("");

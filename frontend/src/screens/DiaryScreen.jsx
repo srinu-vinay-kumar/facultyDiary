@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import DiaryDropdown from "../components/DiaryDropdown";
 
 // component imports
 import Header from "../components/Header";
+import DiaryDropdown from "../components/DiaryDropdown";
+import NoteCard from "../components/New/NoteCard";
 
 const DiaryScreen = () => {
   const dropdownTitles = [
